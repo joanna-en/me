@@ -1,23 +1,17 @@
-import React from 'react';
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Typography,
-} from '@mui/material';
+import React from 'react'
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
 
 interface WishlistItemProps {
-  item: NonNullable<Sanity.Default.Schema.Product>;
+  item: NonNullable<Sanity.Default.Schema.Product>
 }
 
 const WishlistItem: React.FC<WishlistItemProps> = ({ item }) => {
-  const { name, picture, price, location = '', size } = item;
+  const { name, picture, price, location = '', size } = item
   return (
     <Card sx={{ maxWidth: '500px' }}>
-      <CardActionArea href={location} target='_blank'>
+      <CardActionArea href={location} target="_blank">
         <CardMedia
-          component='img'
+          component="img"
           image={picture?.asset.url}
           alt={name}
           sx={{
@@ -32,7 +26,7 @@ const WishlistItem: React.FC<WishlistItemProps> = ({ item }) => {
         </CardContent>
       </CardActionArea>
     </Card>
-  );
-};
+  )
+}
 
-export default WishlistItem;
+export default WishlistItem

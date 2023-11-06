@@ -1,13 +1,12 @@
-import { Box, Container, Typography } from '@mui/material';
-import { client } from '@santiyConfigs/lib/client';
-import { groq } from 'next-sanity';
-import { Suspense } from 'react';
-import WishlistItem from '../components/WishlistItem';
-import { Metadata } from 'next';
+import { Box, Container, Typography } from '@mui/material'
+import { client } from '@santiyConfigs/lib/client'
+import { groq } from 'next-sanity'
+import { Suspense } from 'react'
+import WishlistItem from '../components/WishlistItem'
+import { Metadata } from 'next'
 
-export const getWishlist =
-  async (): Promise<Sanity.Default.Schema.Wishlist> => {
-    const wishlist = await client.fetch(groq`*[_type == 'wishlist'][0] {
+export const getWishlist = async (): Promise<Sanity.Default.Schema.Wishlist> => {
+  const wishlist = await client.fetch(groq`*[_type == 'wishlist'][0] {
       ...,
       products[] -> {
         name,
@@ -20,31 +19,29 @@ export const getWishlist =
           }
         }
       }
-    }`);
-    return wishlist;
-  };
+    }`)
+  return wishlist
+}
 
 export const metadata: Metadata = {
   title: 'Chris Wishlist',
   description: 'Chris wishlist',
-};
+}
 
 export default async function WishList() {
-  const wishlist = await getWishlist();
+  const wishlist = await getWishlist()
   return (
     <Container sx={{ my: 4 }}>
-      <Typography mb={4} variant='h3'>
+      <Typography mb={4} variant="h3">
         Chris&apos;s Wishlist
       </Typography>
       <Suspense fallback={<div>Loading wishlist...</div>}>
-        <Box display='flex' flexWrap='wrap' gap={4}>
-          {wishlist?.products?.map(
-            (product: NonNullable<Sanity.Default.Schema.Product>) => (
-              <WishlistItem item={product} key={product?.name} />
-            )
-          )}
+        <Box display="flex" flexWrap="wrap" gap={4}>
+          {wishlist?.products?.map((product: NonNullable<Sanity.Default.Schema.Product>) => (
+            <WishlistItem item={product} key={product?.name} />
+          ))}
         </Box>
       </Suspense>
     </Container>
-  );
+  )
 }
