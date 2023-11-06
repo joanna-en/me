@@ -5,7 +5,7 @@ import { Suspense } from 'react'
 import WishlistItem from '../components/WishlistItem'
 import { Metadata } from 'next'
 
-export const getWishlist = async (): Promise<Sanity.Default.Schema.Wishlist> => {
+const getWishlist = async (): Promise<Sanity.Default.Schema.Wishlist> => {
   const wishlist = await client.fetch(groq`*[_type == 'wishlist'][0] {
       ...,
       products[] -> {
