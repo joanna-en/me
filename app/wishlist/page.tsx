@@ -1,9 +1,9 @@
+import { Metadata } from 'next'
+import { Suspense } from 'react'
+import { groq } from 'next-sanity'
 import { Box, Container, Typography } from '@mui/material'
 import { client } from '@santiyConfigs/lib/client'
-import { groq } from 'next-sanity'
-import { Suspense } from 'react'
-import WishlistItem from '../components/WishlistItem'
-import { Metadata } from 'next'
+import WishlistItem from '@components/WishlistItem'
 
 const getWishlist = async (): Promise<Sanity.Default.Schema.Wishlist> => {
   const wishlist = await client.fetch<Sanity.Default.Schema.Wishlist>(
@@ -16,7 +16,7 @@ const getWishlist = async (): Promise<Sanity.Default.Schema.Wishlist> => {
         size,
         picture {
           asset -> {
-            url,
+            url
           }
         }
       }
@@ -35,7 +35,7 @@ export default async function WishList() {
   const wishlist = await getWishlist()
   return (
     <Container sx={{ my: 4 }}>
-      <Typography mb={4} variant="h3">
+      <Typography mb={4} variant="h3" color="white">
         Chris&apos;s Wishlist
       </Typography>
       <Suspense fallback={<div>Loading wishlist...</div>}>

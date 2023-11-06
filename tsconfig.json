@@ -15,6 +15,7 @@
     "incremental": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
+    "noUnusedLocals": true,
     "strictNullChecks": true,
     "plugins": [
       {
