@@ -6,7 +6,8 @@ import WishlistItem from '../components/WishlistItem'
 import { Metadata } from 'next'
 
 const getWishlist = async (): Promise<Sanity.Default.Schema.Wishlist> => {
-  const wishlist = await client.fetch(groq`*[_type == 'wishlist'][0] {
+  const wishlist = await client.fetch<Sanity.Default.Schema.Wishlist>(
+    groq`*[_type == 'wishlist'][0] {
       ...,
       products[] -> {
         name,
@@ -15,11 +16,13 @@ const getWishlist = async (): Promise<Sanity.Default.Schema.Wishlist> => {
         size,
         picture {
           asset -> {
-            url
+            url,
           }
         }
       }
-    }`)
+    }`,
+    { revalidate: 30 }
+  )
   return wishlist
 }
 
@@ -36,7 +39,7 @@ export default async function WishList() {
         Chris&apos;s Wishlist
       </Typography>
       <Suspense fallback={<div>Loading wishlist...</div>}>
-        <Box display="flex" flexWrap="wrap" gap={4}>
+        <Box display="flex" flexWrap="wrap" gap={4} justifyContent="center">
           {wishlist?.products?.map((product: NonNullable<Sanity.Default.Schema.Product>) => (
             <WishlistItem item={product} key={product?.name} />
           ))}

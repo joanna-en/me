@@ -8,8 +8,19 @@ interface WishlistItemProps {
 const WishlistItem: React.FC<WishlistItemProps> = ({ item }) => {
   const { name, picture, price, location = '', size } = item
   return (
-    <Card sx={{ maxWidth: '500px' }}>
-      <CardActionArea href={location} target="_blank">
+    <Card
+      sx={{
+        maxWidth: '500px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+      }}
+    >
+      <CardActionArea
+        href={location}
+        target="_blank"
+        sx={{ minHeight: 350, flex: 1, display: 'flex', alignItems: 'center' }}
+      >
         <CardMedia
           component="img"
           image={picture?.asset.url}
@@ -19,12 +30,12 @@ const WishlistItem: React.FC<WishlistItemProps> = ({ item }) => {
             maxWidth: 500,
           }}
         />
-        <CardContent>
-          {name && <Typography>{name}</Typography>}
-          {price && <Typography>${price}</Typography>}
-          {size && <Typography>{size}</Typography>}
-        </CardContent>
       </CardActionArea>
+      <CardContent sx={{ minHeight: 115, flex: 0 }}>
+        {name && <Typography>{name}</Typography>}
+        {price && <Typography>${price}</Typography>}
+        {size && <Typography>{size}</Typography>}
+      </CardContent>
     </Card>
   )
 }
