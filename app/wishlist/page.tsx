@@ -27,8 +27,8 @@ const getWishlist = async (): Promise<Sanity.Default.Schema.Wishlist> => {
 }
 
 export const metadata: Metadata = {
-  title: 'Chris Wishlist',
-  description: 'Chris wishlist',
+  title: 'jo&apos;s wishlist',
+  description: 'jo&apos;s wishlist',
 }
 
 export default async function WishList() {
@@ -36,7 +36,7 @@ export default async function WishList() {
   return (
     <Container sx={{ my: 4 }}>
       <Typography mb={4} variant="h3" color="white">
-        Chris&apos;s Wishlist
+        jo&apos;s wishlist
       </Typography>
       <Suspense fallback={<div>Loading wishlist...</div>}>
         <Box display="flex" flexWrap="wrap" gap={4} justifyContent="center">
