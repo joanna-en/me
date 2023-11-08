@@ -21,7 +21,7 @@ const getWishlist = async (): Promise<Sanity.Default.Schema.Wishlist> => {
         }
       }
     }`,
-    { revalidate: 30 }
+    { cache: 'no-store' }
   )
   return wishlist
 }
