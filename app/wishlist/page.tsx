@@ -27,7 +27,7 @@ const getWishlist = async (): Promise<Sanity.Default.Schema.Wishlist> => {
 }
 
 export const metadata: Metadata = {
-  title: 'jo&apos;s wishlist',
+  title: 'jo wishlist',
   description: 'jo&apos;s wishlist',
 }
 
